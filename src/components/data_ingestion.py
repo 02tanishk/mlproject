@@ -1,10 +1,13 @@
-import os
 import sys
+import os
 
+# Add project root directory to Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from src.exception import CustomException
 from src.logger import logging
 import pandas as pd
+
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
@@ -21,12 +24,10 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the data ingestion method or component")
         try:
-            # Corrected file path for cross-platform compatibility
             df = pd.read_csv(os.path.join('notebook', 'data', 'stud.csv'))
             logging.info('Read the dataset as dataframe')
 
-            # Create artifacts directory
-            os.makedirs('artifacts', exist_ok=True)
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
 
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
 
@@ -38,8 +39,10 @@ class DataIngestion:
 
             logging.info("Ingestion of the data is completed")
 
-            return self.ingestion_config.train_data_path, self.ingestion_config.test_data_path
-
+            return (
+                self.ingestion_config.train_data_path,
+                self.ingestion_config.test_data_path
+            )
         except Exception as e:
             raise CustomException(e, sys)
         

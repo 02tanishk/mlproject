@@ -48,3 +48,6 @@ if __name__=="__main__":
     train_data,test_data=obj.initiate_data_ingestion()
 
 
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
