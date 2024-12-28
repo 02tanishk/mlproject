@@ -24,7 +24,7 @@ def save_object(file_path, obj):
     
 def evaluate_models(X_train, y_train,X_test,y_test,models,param):
     try:
-        report = {}
+        report = {} 
 
         for i in range(len(list(models))):
             model = list(models.values())[i]
