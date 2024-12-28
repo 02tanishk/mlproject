@@ -42,7 +42,7 @@ class ModelTrainer:
                 "Decision Tree": DecisionTreeRegressor(),
                 "Gradient Boosting": GradientBoostingRegressor(),
                 "Linear Regression": LinearRegression(),
-                "Random Forest": RandomForestRegressor(),
+                "Random Forest": RandomForestRegressor(), 
                 "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
@@ -111,9 +111,7 @@ class ModelTrainer:
             r2_square = r2_score(y_test, predicted)
             return r2_square
             
-
-
-
+            
             
         except Exception as e:
             raise CustomException(e,sys)
